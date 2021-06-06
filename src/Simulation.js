@@ -1,6 +1,6 @@
 import React from "react";
 import useCanvas from "./useCanvas";
-import { draw, setup } from "./sim.js";
+import Simulator from "./sim.js";
 
 const predraw = (context) => {
   const { width, height } = context.canvas;
@@ -8,8 +8,9 @@ const predraw = (context) => {
 };
 const postdraw = () => {};
 
+const simulator = new Simulator();
 const Simulation = (props) => {
-  const canvasRef = useCanvas(draw, { predraw, postdraw }, setup);
+  const canvasRef = useCanvas(simulator, { predraw, postdraw });
 
   return <canvas ref={canvasRef} {...props} />;
 };

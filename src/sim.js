@@ -1,58 +1,36 @@
-import {
-  FOOD_COLOR,
-  NUM_X,
-  NUM_Y,
-  SQ_SIZE,
-  STARTING_FOOD
-} from "./constants.js";
-
+import { NUM_X, NUM_Y, SQ_SIZE, STARTING_FOODS } from "./constants.js";
 import Board from "./board.js";
+import Food from "./food.js";
+
 import { getRandomInt } from "./utility.js";
 
-class Food {
-  static color = FOOD_COLOR;
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
+export default class Simulator {
+  constructor() {
+    this.board = new Board(NUM_X, NUM_Y, SQ_SIZE);
+    this.foods = [];
   }
-  draw(ctx, board) {
-    ctx.fillStyle = Food.color;
-    ctx.fillRect(
-      this.x * board.squareSize,
-      this.y * board.squareSize,
-      board.squareSize,
-      board.squareSize
-    );
+
+  createFoods(foods) {
+    for (let i = 0; i < STARTING_FOODS; i++) {
+      let food = new Food(getRandomInt(0, NUM_X), getRandomInt(0, NUM_Y));
+      foods.push(food);
+    }
+  }
+
+  setup(ctx) {
+    ctx.canvas.width = this.board.width;
+    ctx.canvas.height = this.board.height;
+
+    this.createFoods(this.foods);
+  }
+
+  draw(ctx, frameCount) {
+    this.board.drawGrid(ctx);
+
+    ctx.fillStyle = "blue";
+
+    this.foods.forEach((food) => {
+      food.draw(ctx, this.board);
+    });
   }
 }
-
-const board = new Board(NUM_X, NUM_Y, SQ_SIZE);
-
-let foods = [];
-function createFoods() {
-  for (let i = 0; i < STARTING_FOOD; i++) {
-    let food = new Food(getRandomInt(0, NUM_X), getRandomInt(0, NUM_Y));
-    foods.push(food);
-  }
-}
-
-function setup(ctx) {
-  ctx.canvas.width = board.width;
-  ctx.canvas.height = board.height;
-
-  createFoods();
-}
-function draw(ctx, frameCount) {
-  board.drawGrid(ctx);
-
-  ctx.fillStyle = "blue";
-
-  foods.forEach((food) => {
-    food.draw(ctx, board);
-  });
-}
-
-module.exports = {
-  draw,
-  setup
-};

@@ -1,13 +1,13 @@
 import { useRef, useEffect } from "react";
 
-const useCanvas = (draw, { predraw, postdraw }, setup) => {
+const useCanvas = (Simulator, { predraw, postdraw }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    setup(context);
-  }, [setup]);
+    Simulator.setup(context);
+  }, [Simulator]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -18,7 +18,7 @@ const useCanvas = (draw, { predraw, postdraw }, setup) => {
     const render = () => {
       predraw(context);
       frameCount++;
-      draw(context, frameCount);
+      Simulator.draw(context, frameCount);
       animationFrameId = window.requestAnimationFrame(render);
       postdraw();
     };
@@ -27,7 +27,7 @@ const useCanvas = (draw, { predraw, postdraw }, setup) => {
     return () => {
       window.cancelAnimationFrame(animationFrameId);
     };
-  }, [draw, predraw, postdraw]);
+  }, [Simulator, predraw, postdraw]);
 
   return canvasRef;
 };
