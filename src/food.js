@@ -7,6 +7,7 @@ export default class Food {
     this.y = y;
   }
   draw(ctx, board) {
+    //ctx.fillStyle = Food.color;
     ctx.fillStyle = Food.color;
     ctx.fillRect(
       this.x * board.squareSize,

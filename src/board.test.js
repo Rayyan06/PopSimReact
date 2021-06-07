@@ -2,6 +2,7 @@ import Board from "./board.js";
 import { NUM_X, NUM_Y, SQ_SIZE } from "./constants.js";
 import { ctx } from "./mockCtx.js";
 
+
 describe("board", () => {
   let board;
 
@@ -28,3 +29,4 @@ describe("board", () => {
     expect(ctx.stroke).toHaveBeenCalled();
   });
 });
+

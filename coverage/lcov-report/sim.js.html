@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">69.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>9/13</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>8/12</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -101,22 +101,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,23 +136,23 @@ import Food from "./food.js";
 import { getRandomInt } from "./utility.js";
 &nbsp;
 export default class Simulator {
-<span class="fstat-no" title="function not covered" >  co</span>nstructor() {
-<span class="cstat-no" title="statement not covered" >    this.board = new Board(NUM_X, NUM_Y, SQ_SIZE);</span>
-<span class="cstat-no" title="statement not covered" >    this.foods = [];</span>
+  constructor() {
+    this.board = new Board(NUM_X, NUM_Y, SQ_SIZE);
+    this.foods = [];
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  cr</span>eateFoods(foods) {
-<span class="cstat-no" title="statement not covered" >    for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; STARTING_FOODS; i++) {</span>
-      let food = <span class="cstat-no" title="statement not covered" >new Food(getRandomInt(0, NUM_X), getRandomInt(0, NUM_Y));</span>
-<span class="cstat-no" title="statement not covered" >      foods.push(food);</span>
+  createFoods(foods) {
+    for (let i = 0; i &lt; STARTING_FOODS; i++) {
+      let food = new Food(getRandomInt(0, NUM_X), getRandomInt(0, NUM_Y));
+      foods.push(food);
     }
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  se</span>tup(ctx) {
-<span class="cstat-no" title="statement not covered" >    ctx.canvas.width = this.board.width;</span>
-<span class="cstat-no" title="statement not covered" >    ctx.canvas.height = this.board.height;</span>
+  setup(ctx) {
+    ctx.canvas.width = this.board.width;
+    ctx.canvas.height = this.board.height;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    this.createFoods(this.foods);</span>
+    this.createFoods(this.foods);
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  dr</span>aw(ctx, frameCount) {
@@ -172,7 +172,7 @@ export default class Simulator {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Jun 06 2021 13:42:30 GMT+0000 (Coordinated Universal Time)
+                at Mon Jun 07 2021 14:35:47 GMT-0400 (Eastern Daylight Time)
             </div>
         </div>
         <script src="prettify.js"></script>
