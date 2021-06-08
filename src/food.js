@@ -5,6 +5,7 @@ export default class Food {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.neighbors = 0;
   }
   draw(ctx, board) {
     //ctx.fillStyle = Food.color;
@@ -15,5 +16,12 @@ export default class Food {
       board.squareSize,
       board.squareSize
     );
+  }
+
+  isCloseTo(otherFood) {
+    if (this == otherFood) {
+      return;
+    }
+    return (Math.abs(this.x - otherFood.x) <= 1 ) && (Math.abs(this.y - otherFood.y <=1));
   }
 }
