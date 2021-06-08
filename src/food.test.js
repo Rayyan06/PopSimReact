@@ -8,7 +8,7 @@ describe("food", () => {
         const food = new Food(3, 5);
         expect(food.x).toEqual(3);
         expect(food.y).toEqual(5);
-        expect(food.neighbors).toBe(0);
+        expect(food.neighbors).toBeDefined();
     })
 
     it('check if the draw method works correctly', () => {  
@@ -25,6 +25,12 @@ describe("food", () => {
 
         expect(food.isCloseTo(otherFood)).toBeTruthy()
         expect(otherFood.isCloseTo(food)).toBeTruthy();
+    })
+
+    it("check if we can access the neighbors property of food", () => {
+        const food = new Food(3, 6);
+        food.neighbors++;
+        expect(food.neighbors).toBe(1);
     })
 
     it("check if the isCloseTo method works correctly for far objects", () => {

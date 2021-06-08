@@ -22,6 +22,6 @@ export default class Food {
     if (this == otherFood) {
       return;
     }
-    return (Math.abs(this.x - otherFood.x) <= 1 ) && (Math.abs(this.y - otherFood.y <=1));
+    return (Math.abs(this.x - otherFood.x) <= 1 ) && (Math.abs(this.y - otherFood.y) <=1);
   }
 }

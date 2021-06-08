@@ -24,13 +24,19 @@ export default class Simulator {
 
     this.createFoods(this.foods);
   }
-  killFoods() {
+  updateFoodNeighbors() {
     for (let food of this.foods) {
-      for(let otherFood of this.foods) {
+      for (let otherFood of this.foods) {
         if (food.isCloseTo(otherFood)) {
           food.neighbors++;
         }
       }
+    }
+
+  }
+  killFoods() {
+
+    for (let food of this.foods) {
       if (food.neighbors >= NUM_NEIGHBORS_THRESHOLD) {
         this.deletedFoods.push(food);
       }
@@ -38,8 +44,14 @@ export default class Simulator {
     
     this.foods = this.foods.filter(food => !this.deletedFoods.includes(food));
   }
+
+  createFoods() {
+
+  }
   update() {
+    this.updateFoodNeighbors();
     this.killFoods();
+
   }
 
   draw(ctx) {

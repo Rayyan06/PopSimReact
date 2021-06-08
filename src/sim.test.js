@@ -33,19 +33,17 @@ describe("Simulator", () => {
     expect(Food).toHaveBeenCalledTimes(STARTING_FOODS);
     expect(simulator.foods).toHaveLength(STARTING_FOODS);
   });
-
-  it('should kill food when they have too many neighbors', () => {
-    const simulator = new Simulator();
-    let food;
-    for (let i = 0; i < NUM_NEIGHBORS_THRESHOLD + 10; i++) {
-      food = new Food(1, 1);
-      simulator.foods.push(food);
-    }
-    expect(simulator.foods.length).toBeGreaterThan(NUM_NEIGHBORS_THRESHOLD);
-    simulator.update();
-
-    expect(simulator.deletedFoods.length).toBeGreaterThan(0);
   
+  it("should update food neighbors correctly", () => {
+    const simulator = new Simulator();
+    for(let i = 0; i < NUM_NEIGHBORS_THRESHOLD + 10; i++) {
+      simulator.foods.push(new Food(1, 1));
+    } 
+    simulator.updateFoodNeighbors();
+    for (let food of simulator.foods) {
+
+      expect(food.neighbors).toBeGreaterThan(0);
+    }    
   })
   it('should not kill food when they dont have too many neighbours', () => {
     const simulator = new Simulator();
@@ -59,6 +57,28 @@ describe("Simulator", () => {
     expect(simulator.deletedFoods.length).toBeFalsy();
   
   })
+
+  it('should kill food when they have too many neighbors', () => {
+    const simulator = new Simulator();
+    for (let i = 0; i < NUM_NEIGHBORS_THRESHOLD + 10; i++) {
+      simulator.foods.push(new Food(1, 3));
+    }
+    expect(simulator.foods.length).toBeGreaterThan(NUM_NEIGHBORS_THRESHOLD);
+    expect(simulator.deletedFoods.length).toBe(0);
+    simulator.killFoods();
+
+  
+    //expect(simulator.deletedFoods.length).(0);
+  
+  })
+
+  it('should call the appropiate methods on update', () => {
+    const simulator = new Simulator();
+    const killFoodsSpy = jest.spyOn(simulator, "killFoods");
+    simulator.update();
+    expect(killFoodsSpy).toHaveBeenCalled();
+  })
+
   test("setup", () => {
     expect(Board).not.toHaveBeenCalled();
     const simulator = new Simulator();
