@@ -22,7 +22,7 @@ export default class Simulator {
     ctx.canvas.width = this.board.width;
     ctx.canvas.height = this.board.height;
 
-    this.createFoods(this.foods);
+    this.createFoods();
   }
   updateFoodNeighbors() {
     for (let food of this.foods) {
